@@ -13,4 +13,6 @@ public interface IAutomovilService{
 	public List<Automovil> listar();
 	
 	public void eliminar(String patente);
+
+	public Automovil buscarPorId(Long autoId);
 }

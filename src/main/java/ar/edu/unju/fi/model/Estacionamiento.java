@@ -27,6 +27,8 @@ public class Estacionamiento {
 	
 	private Boolean disponibilidad;
 	
+	private Long total;
+	
 	enum Zona {
 		  ZONA2, ZONA1
 	}

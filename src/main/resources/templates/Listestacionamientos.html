@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Estacionamientos</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Lista de Estacionamientos</h2>
+        
+        <!-- Tabla para mostrar los estacionamientos -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Zona</th>
+                    <th>Disponibilidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Iterar sobre los estacionamientos pasados desde el controlador -->
+                <tr th:each="estacionamiento : ${estacionamientos}">
+                    <td th:text="${estacionamiento.codigo}"></td>
+                    <td th:text="${estacionamiento.zona}"></td>
+                    <td>
+                        <!-- Mostrar disponibilidad (Libre/Ocupado) -->
+                        <span th:text="${estacionamiento.disponibilidad ? 'Libre' : 'Ocupado'}"></span>
+                    </td>
+                    <td>
+                        <!-- Botón para editar -->
+                        <a th:href="@{'/estacionamiento/editar/' + ${estacionamiento.codigo}}" class="btn btn-warning">Editar</a>
+                        <!-- Botón para cambiar estado -->
+                        <a th:href="@{'/estacionamiento/estado/' + ${estacionamiento.codigo} + '?disponibilidad=' + ${estacionamiento.disponibilidad} ? false : true}" class="btn btn-success">
+                            <span th:text="${estacionamiento.disponibilidad ? 'Marcar como Ocupado' : 'Marcar como Libre'}"></span>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Botón para agregar un nuevo estacionamiento -->
+        <a href="/" class="btn btn-primary mt-3">Inicio</a>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, y jQuery (si es necesario para tu proyecto) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

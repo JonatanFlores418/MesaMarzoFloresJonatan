@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Estacionamiento</title>
+    <title>Estacionar</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container mt-5">
-        <h2>Formulario de Estacionamiento</h2>
-        
-        <!-- Mensaje de error si no hay espacio disponible -->
-       <!-- // <div class="alert alert-danger" style="display: {{mensajeError ? 'block' : 'none'}}" id="mensajeError">
-            {{mensajeError}}
-        </div>-->
+<body class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
+        <h2 class="text-center mb-4">Formulario de Estacionamiento</h2>
 
-        <form action="/registrarAuto" method="POST">
+        <!-- Mensaje de error si no hay espacio disponible -->
+        <div id="mensajeError" class="alert alert-danger" style="display:none;">
+            <strong>Error:</strong> No hay autos disponibles o espacio en la zona seleccionada.
+        </div>
+
+        <form action="/estacionar/guardar" method="POST">
             <!-- Auto a estacionar -->
             <div class="form-group">
-                <label for="auto">Auto</label>
-                <input type="text" class="form-control" id="auto" name="auto" placeholder="Ingrese el nombre del auto" required>
+                <label for="auto">Seleccionar Auto</label>
+                <select class="form-control" id="auto" name="autoId" required>
+                    <option value="">Seleccione un auto</option>
+                    <th:block th:each="auto : ${autos}">
+                        <option th:value="${auto.id}" th:text="${auto.modelo}"></option>
+                    </th:block>
+                </select>
             </div>
 
             <!-- Zona del estacionamiento -->
@@ -33,33 +38,18 @@
 
             <!-- Costo según zona -->
             <div class="form-group">
-                <p id="costoZona">Zona 1: $500 la hora</p>
+                <p id="costoZona">Zona 1: $500 la hora y Zona 2: $300 la hora</p>
+            </div>
+
+            <!-- Cantidad de horas -->
+            <div class="form-group">
+                <label for="horas">Horas de estacionamiento</label>
+                <input type="number" class="form-control" id="horas" name="horas" placeholder="Cantidad de horas" min="1" required>
             </div>
 
             <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Registrar Estacionamiento</button>
+            <button type="submit" class="btn btn-primary">Estacionar</button>
         </form>
     </div>
-
-    <script>
-        function actualizarCosto() {
-            const zona = document.getElementById('zona').value;
-            const costoZona = document.getElementById('costoZona');
-            
-            if (zona === 'zona1') {
-                costoZona.innerText = "Zona 1: $500 la hora";
-            } else if (zona === 'zona2') {
-                costoZona.innerText = "Zona 2: $300 la hora";
-            }
-        }
-
-        // Mostrar el mensaje de error si no hay espacio
-        document.addEventListener('DOMContentLoaded', function() {
-            const mensajeError = '{{mensajeError}}';
-            if (mensajeError) {
-                document.getElementById('mensajeError').style.display = 'block';
-            }
-        });
-    </script>
 </body>
 </html>

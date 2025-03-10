@@ -14,4 +14,8 @@ public interface IEstacionarService {
 	public List<Estacionar> listarEstacionar();
 	
 	public void eliminarEstacionar(Long codigo);
+
+	public Object listar();
+
+
 }

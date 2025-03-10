@@ -3,11 +3,12 @@ package ar.edu.unju.fi.service.imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import ar.edu.unju.fi.model.Estacionamiento;
 import ar.edu.unju.fi.repository.EstacionamientoRepository;
 import ar.edu.unju.fi.service.IEstacionamientoService;
-
+@Service
 public class IEstacionamientoServiceImp implements IEstacionamientoService{
 	@Autowired
     EstacionamientoRepository estacionamientoRepository;

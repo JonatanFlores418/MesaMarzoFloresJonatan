@@ -9,18 +9,22 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Component
 @Getter
 @Setter
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class Estacionar {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	  private Long codigo;
+	
 	@NotNull(message= "DEBE SELECCIONAR UNA ZONA")
 	private Zona zona;
 	
@@ -31,6 +35,10 @@ public class Estacionar {
 	private Estacionamiento estacionamiento;
 
 	private Boolean estado;
+	
 	private Long Horas;
+	
 	private Long Total;
 }
+
+

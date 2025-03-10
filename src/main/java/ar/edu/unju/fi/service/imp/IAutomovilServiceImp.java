@@ -49,4 +49,10 @@ public void eliminar(String patente) {
 		automovil.setEstado(false);
 		autoRepository.save(automovil);
 }
+
+@Override
+public Automovil buscarPorId(Long autoId) {
+	// TODO Auto-generated method stub
+	return null;
+}
 }
