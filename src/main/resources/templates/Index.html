@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estacionamiento Municipal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: lightblue; /* Cambia el color de fondo */
+        }
+    </style>
+</head>
+<body>
+<div th:insert="~{/layouts/nav :: nav}"></div>
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">Estacionamiento Municipal</h1>
+        
+        <!-- Sección de espacios disponibles -->
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Espacios Disponibles</h4>
+            <p>ZONA 1 ($300/hora): <span id="zona1-disponibles">Cargando...</span> espacios libres</p>
+            <p>ZONA 2 ($500/hora): <span id="zona2-disponibles">Cargando...</span> espacios libres</p>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Crear Auto</h5>
+                        <p class="card-text">Registra un nuevo automóvil en el sistema.</p>
+                        <a th:href="@{/automovil/nuevo}" class="btn btn-primary">Nuevo Auto</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Crear Box</h5>
+                        <p class="card-text">Añade un nuevo box de estacionamiento.</p>
+                        <a th:href="@{/estacionamiento/nuevo}" class="btn btn-primary">Nuevo Espacio</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Reservar</h5>
+                        <p class="card-text">Reserva un box y calcular el monto.</p>
+                        <a th:href="@{/estacionar/nuevo}" class="btn btn-primary">Reservar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

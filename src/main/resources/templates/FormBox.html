@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Estacionamiento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Formulario de Estacionamiento</h2>
+        <form action="/guardarEstacionamiento" method="POST">
+            <!-- Zona del estacionamiento -->
+            <div class="form-group">
+                <label for="zona">Zona del Estacionamiento</label>
+                <select class="form-control" id="zona" name="zona" required>
+                    <option value="zona1">Zona 1</option>
+                    <option value="zona2">Zona 2</option>
+                </select>
+            </div>
+
+            <!-- Disponibilidad del estacionamiento -->
+            <div class="form-group">
+                <label for="disponibilidad">Disponibilidad</label>
+                <select class="form-control" id="disponibilidad" name="disponibilidad" required>
+                    <option value="libre">Libre</option>
+                    <option value="ocupado">Ocupado</option>
+                </select>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn-primary">Registrar Estacionamiento</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, y jQuery (si es necesario para tu proyecto) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

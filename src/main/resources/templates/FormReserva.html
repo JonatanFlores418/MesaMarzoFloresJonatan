@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Estacionamiento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Formulario de Estacionamiento</h2>
+        
+        <!-- Mensaje de error si no hay espacio disponible -->
+       <!-- // <div class="alert alert-danger" style="display: {{mensajeError ? 'block' : 'none'}}" id="mensajeError">
+            {{mensajeError}}
+        </div>-->
+
+        <form action="/registrarAuto" method="POST">
+            <!-- Auto a estacionar -->
+            <div class="form-group">
+                <label for="auto">Auto</label>
+                <input type="text" class="form-control" id="auto" name="auto" placeholder="Ingrese el nombre del auto" required>
+            </div>
+
+            <!-- Zona del estacionamiento -->
+            <div class="form-group">
+                <label for="zona">Zona de Estacionamiento</label>
+                <select class="form-control" id="zona" name="zona" onchange="actualizarCosto()" required>
+                    <option value="zona1">Zona 1</option>
+                    <option value="zona2">Zona 2</option>
+                </select>
+            </div>
+
+            <!-- Costo según zona -->
+            <div class="form-group">
+                <p id="costoZona">Zona 1: $500 la hora</p>
+            </div>
+
+            <!-- Botón de envío -->
+            <button type="submit" class="btn btn-primary">Registrar Estacionamiento</button>
+        </form>
+    </div>
+
+    <script>
+        function actualizarCosto() {
+            const zona = document.getElementById('zona').value;
+            const costoZona = document.getElementById('costoZona');
+            
+            if (zona === 'zona1') {
+                costoZona.innerText = "Zona 1: $500 la hora";
+            } else if (zona === 'zona2') {
+                costoZona.innerText = "Zona 2: $300 la hora";
+            }
+        }
+
+        // Mostrar el mensaje de error si no hay espacio
+        document.addEventListener('DOMContentLoaded', function() {
+            const mensajeError = '{{mensajeError}}';
+            if (mensajeError) {
+                document.getElementById('mensajeError').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

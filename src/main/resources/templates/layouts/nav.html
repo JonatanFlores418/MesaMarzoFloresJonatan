@@ -1,0 +1,24 @@
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="nav">
+        <div class="container">
+            <a class="navbar-brand" href="#">Estacionamiento Municipal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" th:href="@{/}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/automovil/nuevo}">Autos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/estacionamiento/nuevo}">Estacionamientos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{estacionar/nuevo}">Estacionar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
