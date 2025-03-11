@@ -30,8 +30,8 @@ public class AutomovilControler {
     @GetMapping("/automovil/nuevo")
     public ModelAndView formularioNuevoAutomovil() {
         ModelAndView mav = new ModelAndView("formAuto");
-        mav.addObject("Marca", List.of("FORD", "RENAULT", "FIAT", "TOYOTA"));
-        mav.addObject("Color", List.of("NEGRO", "BLANCO", "VERDE", "ROJO", "GRIS", "AMARRILLO"));
+        mav.addObject("marca", List.of("FORD", "RENAULT", "FIAT", "TOYOTA"));
+        mav.addObject("color", List.of("NEGRO", "BLANCO", "VERDE", "ROJO", "GRIS", "AMARRILLO"));
         mav.addObject("automovil", new Automovil());
         return mav;
     }

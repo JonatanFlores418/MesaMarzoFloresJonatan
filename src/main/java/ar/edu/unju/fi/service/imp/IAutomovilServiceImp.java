@@ -31,7 +31,7 @@ public List<Automovil> listar() {
     return autosActivos;
 }
 
-
+ 
 @Override
 public Automovil actualizar(Automovil automovil) {
 	Automovil automovil1 = autoRepository.findById(automovil.getPatente())
@@ -51,8 +51,9 @@ public void eliminar(String patente) {
 }
 
 @Override
-public Automovil buscarPorId(Long autoId) {
-	// TODO Auto-generated method stub
-	return null;
+public Automovil buscarPorPatente(String patente) {
+	Automovil automovil = autoRepository.findById(patente)
+	        .orElseThrow(() -> new RuntimeException("Automovil no encontrado"));
+	    return automovil;
 }
 }

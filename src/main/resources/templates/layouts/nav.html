@@ -1,6 +1,6 @@
  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" th:fragment="nav">
         <div class="container">
-            <a class="navbar-brand" href="#">Estacionamiento Municipal</a>
+            <a class="navbar-brand" href="/">Estacionamiento Municipal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -10,13 +10,13 @@
                         <a class="nav-link" aria-current="page" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/automovil/nuevo}">Autos</a>
+                        <a class="nav-link" th:href="@{/automoviles}">Autos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/estacionamiento/nuevo}">Estacionamientos</a>
+                        <a class="nav-link" th:href="@{/estacionamientos}">Estacionamientos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{estacionar/nuevo}">Estacionar</a>
+                        <a class="nav-link" th:href="@{/estacionado}">Estacionar</a>
                     </li>
                 </ul>
             </div>

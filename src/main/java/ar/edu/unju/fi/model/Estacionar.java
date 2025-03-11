@@ -36,9 +36,9 @@ public class Estacionar {
 
 	private Boolean estado;
 	
-	private Long Horas;
+	private Long horas;
 	
-	private Long Total;
+	private Long costo;
 }
 
 

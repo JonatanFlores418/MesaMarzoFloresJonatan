@@ -23,13 +23,11 @@ public class Estacionamiento {
     private Long codigo; // Clave primaria
 	
 	@Enumerated(EnumType.STRING)
-	private Zona zona;
+	public Zona zona;
 	
 	private Boolean disponibilidad;
 	
-	private Long total;
-	
-	enum Zona {
+	public enum Zona {
 		  ZONA2, ZONA1
 	}
 }

@@ -6,10 +6,10 @@
     <title>Lista de Reservas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="container mt-5">
-
+<body >
+ <div th:insert="~{/layouts/nav :: nav}"></div>
+<div class="container mt-5">
     <h2 class="text-center mb-4">Lista de Reservas de Estacionamiento</h2>
-
     <!-- Mensaje de éxito al eliminar una reserva -->
     <div th:if="${mensajeExito}" class="alert alert-success">
         <strong>Éxito:</strong> <span th:text="${mensajeExito}"></span>
@@ -28,7 +28,7 @@
                 <th scope="col">Auto</th>
                 <th scope="col">Zona</th>
                 <th scope="col">Horas</th>
-                <th scope="col">Total</th>
+                <th scope="col">Costo Total</th>
                 <th scope="col">Acciones</th>
             </tr>
         </thead>
@@ -39,7 +39,7 @@
                     <td th:text="${reserva.automovil.modelo}"></td>
                     <td th:text="${reserva.zona}"></td>
                     <td th:text="${reserva.horas}"></td>
-                    <td th:text="${reserva.total}"></td>
+                    <td th:text="${reserva.costo}"></td>
                     <td>
                         <!-- Eliminar reserva -->
                         <a href="/estacionado/eliminar/{codigo}" th:href="@{'/estacionado/eliminar/' + ${reserva.codigo}}" class="btn btn-danger">Eliminar</a>
@@ -48,6 +48,7 @@
             </th:block>
         </tbody>
     </table>
-
+           <a href="/" class="btn btn-primary mt-3">Inicio</a>
+</div>
 </body>
 </html>

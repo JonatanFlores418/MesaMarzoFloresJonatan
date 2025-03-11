@@ -1,55 +1,90 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estacionar</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Reservar Estacionamiento</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+<script>
+	// Función que calcula el costo basado en la zona y la cantidad de horas
+	function calcularCosto() {
+		var zona = document.getElementById("zona").value; // Obtener zona seleccionada
+		var horas = parseInt(document.getElementById("horas").value); // Obtener horas
+		var costo = 0;
+
+		// Validar si se ingresaron horas
+		if (isNaN(horas) || horas <= 0) {
+			document.getElementById("costo").value = ""; // Si no es válido, limpiar el costo
+			return;
+		}
+
+		// Calcular costo basado en la zona
+		if (zona === "ZONA1") {
+			costo = 300 * horas; // Zona 1: $300 por hora
+		} else if (zona === "ZONA2") {
+			costo = 500 * horas; // Zona 2: $500 por hora
+		}
+
+		// Mostrar el costo calculado en el campo correspondiente
+		document.getElementById("costo").value = costo;
+	}
+</script>
+
 </head>
-<body class="container mt-5 d-flex justify-content-center">
-    <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%;">
-        <h2 class="text-center mb-4">Formulario de Estacionamiento</h2>
-
-        <!-- Mensaje de error si no hay espacio disponible -->
-        <div id="mensajeError" class="alert alert-danger" style="display:none;">
-            <strong>Error:</strong> No hay autos disponibles o espacio en la zona seleccionada.
-        </div>
-
-        <form action="/estacionar/guardar" method="POST">
-            <!-- Auto a estacionar -->
-            <div class="form-group">
-                <label for="auto">Seleccionar Auto</label>
-                <select class="form-control" id="auto" name="autoId" required>
-                    <option value="">Seleccione un auto</option>
-                    <th:block th:each="auto : ${autos}">
-                        <option th:value="${auto.id}" th:text="${auto.modelo}"></option>
-                    </th:block>
+<body>
+<div th:insert="~{/layouts/nav :: nav}"></div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%;">
+        <h2>Reservar Estacionamiento</h2>
+        <form th:action="@{/estacionado/guardar}" th:object="${reserva}" method="post">
+            
+            <input type="hidden" th:field="*{codigo}" id="codigo" class="form-control">
+            
+            <div class="mb-3">
+                <label class="form-label">Zona</label>
+                <select class="form-select" th:field="*{zona}" id="zona" required>
+                    <option value="ZONA1">Zona 1 ($300/hora)</option>
+                    <option value="ZONA2">Zona 2 ($500/hora)</option>
                 </select>
             </div>
-
-            <!-- Zona del estacionamiento -->
-            <div class="form-group">
-                <label for="zona">Zona de Estacionamiento</label>
-                <select class="form-control" id="zona" name="zona" onchange="actualizarCosto()" required>
-                    <option value="zona1">Zona 1</option>
-                    <option value="zona2">Zona 2</option>
+            
+            <div class="mb-3">
+                <label class="form-label">Seleccionar Automóvil</label>
+                <select class="form-select" th:field="*{automovil}" required>
+                    <option th:each="auto : ${automoviles}" th:value="${auto.patente}" th:text="${auto.marca + ' - ' + auto.modelo + ' - ' + auto.patente}"></option>
                 </select>
             </div>
-
-            <!-- Costo según zona -->
-            <div class="form-group">
-                <p id="costoZona">Zona 1: $500 la hora y Zona 2: $300 la hora</p>
+            
+            <div class="mb-3">
+                <label class="form-label">Seleccionar Box</label>
+                <select class="form-select" th:field="*{estacionamiento}" required>
+                    <option th:each="estacionamiento : ${estacionamientos}" th:value="${estacionamiento.codigo}" th:text="'Box ' + ${estacionamiento.codigo} + ' - Zona ' + ${estacionamiento.zona}"></option>
+                </select>
             </div>
-
-            <!-- Cantidad de horas -->
-            <div class="form-group">
-                <label for="horas">Horas de estacionamiento</label>
-                <input type="number" class="form-control" id="horas" name="horas" placeholder="Cantidad de horas" min="1" required>
+            
+            <div class="mb-3">
+                <label class="form-label">Estado</label>
+                <select class="form-select" th:field="*{estado}" required>
+                    <option th:value="true">Libre</option>
+                    <option th:value="false">Ocupado</option>
+                </select>
             </div>
-
-            <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary">Estacionar</button>
+            
+            <div class="mb-3">
+                <label class="form-label">Cantidad de horas</label>
+                <input type="number" class="form-control" th:field="*{horas}" id="horas" min="1" onchange="calcularCosto()" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Costo</label>
+                <input type="text" class="form-control" th:field="*{costo}" id="costo" th:value="${reserva.costo}" readonly>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Reservar</button>
         </form>
     </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

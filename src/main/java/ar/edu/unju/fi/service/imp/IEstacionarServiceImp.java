@@ -1,6 +1,5 @@
 package ar.edu.unju.fi.service.imp;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,20 +25,13 @@ public class IEstacionarServiceImp implements IEstacionarService{
 	
 	@Override
 	public Estacionar guardarEstacionar(Estacionar estacionar) {
-		estacionar.setEstado(true);
 		return estacionarRepository.save(estacionar);
 	}
 
 	@Override
 	public List<Estacionar> listarEstacionar() {
-		 List<Estacionar> estacionar = (List<Estacionar>) estacionarRepository.findAll();
-		    List<Estacionar> estacionarActivos = new ArrayList<>();
-		    for (Estacionar estacion : estacionar) {
-		      if (estacion.getEstado().equals(true)) {
-		        estacionarActivos.add(estacion);
-		      }
-		    }
-		    return estacionarActivos;
+
+		    return (List<Estacionar>)estacionarRepository.findAll() ;
 	}
 
 	@Override
