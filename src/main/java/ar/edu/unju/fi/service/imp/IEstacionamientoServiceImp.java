@@ -52,4 +52,9 @@ public class IEstacionamientoServiceImp implements IEstacionamientoService{
 	    return estacionamientoRepository.save(existente);
 	  }
 
+	@Override
+	public List<Estacionamiento> listarDisponibles() {
+	    return estacionamientoRepository.findByDisponibilidad(true); // Suponiendo que hay un atributo `disponibilidad`
+	}
+
 }

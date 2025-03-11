@@ -32,7 +32,7 @@ public class EstacionarController {
         ModelAndView mav = new ModelAndView("FormReserva");
         mav.addObject("reserva", new Estacionar());
         mav.addObject("automoviles", automovilService.listar());
-        mav.addObject("estacionamientos", estacionamientoService.listar());
+        mav.addObject("estacionamientos", estacionamientoService.listarDisponibles());
         return mav;
 
     }
@@ -41,7 +41,8 @@ public class EstacionarController {
 	public String guardarEstacionado(Estacionar estacionar) {
 		estacionarService.guardarEstacionar(estacionar);
 		Estacionamiento box = estacionar.getEstacionamiento();
-		estacionamientoService.actualizarEstado(box.getCodigo(), box.getDisponibilidad());
+		box.setDisponibilidad(false);
+		estacionamientoService.actualizarEstado(box.getCodigo(), false);
 		return "redirect:/estacionado";
 	}
     @PostMapping("/estacionado/nuevo")
@@ -59,8 +60,8 @@ public class EstacionarController {
 	}
 	
 	@GetMapping("/estacionado/eliminar/{codigo}")
-	public String eliminarEstacionar(@PathVariable Long Codigo) {
-		estacionarService.eliminarEstacionar(Codigo);
+	public String eliminarEstacionar(@PathVariable Long codigo) {
+		estacionarService.eliminarEstacionar(codigo);
 		return "redirect:/estacionado";
 	}
 

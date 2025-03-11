@@ -17,4 +17,7 @@ public interface IEstacionamientoService{
 	public Estacionamiento actualizar(Estacionamiento estacionamiento);
 	
 	public Estacionamiento buscarPorCodigo(Long codigo);
+
+	List<Estacionamiento> listarDisponibles();
+
 }

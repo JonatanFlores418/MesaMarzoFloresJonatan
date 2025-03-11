@@ -36,10 +36,11 @@ public class IEstacionarServiceImp implements IEstacionarService{
 
 	@Override
 	public void eliminarEstacionar(Long codigo) {
-		 Estacionar estacionar = estacionarRepository.findById(codigo)
-			        .orElseThrow(() -> new RuntimeException("estacionamiento no encontrado"));
-			    estacionar.setEstado(false);
-			    estacionarRepository.save(estacionar);
+	    if (estacionarRepository.existsById(codigo)) {
+	        estacionarRepository.deleteById(codigo);
+	    } else {
+	        throw new RuntimeException("El estacionamiento no existe");
+	    }
 	}
 
 }
